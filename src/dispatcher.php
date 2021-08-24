@@ -1,5 +1,7 @@
 <?php
 
+namespace MVC;
+
 class Dispatcher
 {
 
@@ -8,9 +10,9 @@ class Dispatcher
     public function dispatch()
     {
         $this->request = new Request();
-        
+
         Router::parse($this->request->url, $this->request);
-        
+
         $controller = $this->loadController();
 
         call_user_func_array([$controller, $this->request->action], $this->request->params);
@@ -22,8 +24,7 @@ class Dispatcher
         $file = ROOT . 'Controllers/' . $name . '.php';
         require($file);
         $controller = new $name();
+        /* $controller = "MVC\\src\\Controller\\taskController"; */
         return $controller;
     }
-
 }
-?>

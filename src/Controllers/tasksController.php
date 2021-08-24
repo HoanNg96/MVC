@@ -5,7 +5,7 @@ class tasksController extends Controller
     {
         require(ROOT . 'Models/Task.php');
 
-        $tasks = new Task();
+        $tasks = new TaskModel();
 
         $d['tasks'] = $tasks->showAllTasks();
         $this->set($d);
@@ -18,7 +18,7 @@ class tasksController extends Controller
         {
             require(ROOT . 'Models/Task.php');
 
-            $task= new Task();
+            $task= new TaskModel();
 
             if ($task->create($_POST["title"], $_POST["description"]))
             {
@@ -32,7 +32,7 @@ class tasksController extends Controller
     function edit($id)
     {
         require(ROOT . 'Models/Task.php');
-        $task= new Task();
+        $task= new TaskModel();
 
         $d["task"] = $task->showTask($id);
 
@@ -51,11 +51,10 @@ class tasksController extends Controller
     {
         require(ROOT . 'Models/Task.php');
 
-        $task = new Task();
+        $task = new TaskModel();
         if ($task->delete($id))
         {
             header("Location: " . WEBROOT . "tasks/index");
         }
     }
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-class Task extends Model
+class TaskModel extends Model
 {
     public function create($title, $description)
     {
