@@ -1,0 +1,9 @@
+{
+    "name": "hoan/mvc",
+    "autoload": {
+        "psr-4": {
+            "Hoan\\Mvc\\": "src/"
+        }
+    },
+    "require": {}
+}
