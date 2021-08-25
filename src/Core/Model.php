@@ -1,5 +1,7 @@
 <?php
 
+namespace MVC\Core;
+
 class Model
 {
     public function getProperties($object)

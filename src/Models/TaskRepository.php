@@ -1,5 +1,7 @@
 <?php
 
+namespace MVC\Models;
+
 class TaskRepository
 {
     public function add($model)

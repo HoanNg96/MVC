@@ -1,5 +1,10 @@
 <?php
 
+namespace MVC\Controllers;
+
+use MVC\Core\Controller;
+use MVC\Models\TaskModel;
+
 class tasksController extends Controller
 {
     function index()

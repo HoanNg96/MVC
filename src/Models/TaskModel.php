@@ -1,5 +1,10 @@
 <?php
 
+namespace MVC\Models;
+
+use MVC\Config\Database;
+use MVC\Core\Model;
+
 class TaskModel extends Model
 {
     public function create($title, $description)

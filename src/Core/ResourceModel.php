@@ -1,5 +1,11 @@
 <?php
 
+namespace MVC\Core;
+
+use MVC\Core\ResourceModelInterface;
+use MVC\Config\Database;
+use PDO;
+
 class ResourceModel implements ResourceModelInterface
 {
     private $table;
