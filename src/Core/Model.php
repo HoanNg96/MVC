@@ -1,10 +1,10 @@
 <?php
-    class Model
+
+class Model
+{
+    public function getProperties($object)
     {
-        public function getProperties($object)
-        {
-            $result = get_object_vars($object);
-            return $result;
-        }
+        $result = get_object_vars($object);
+        return $result;
     }
-?>
+}

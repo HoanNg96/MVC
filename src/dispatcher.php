@@ -11,7 +11,7 @@ class Dispatcher
     {
         $this->request = new Request();
 
-        Router::parse($this->request->url, $this->request);
+        $x = Router::parse($this->request->url, $this->request);
 
         $controller = $this->loadController();
 
@@ -24,7 +24,6 @@ class Dispatcher
         $file = ROOT . 'Controllers/' . $name . '.php';
         require($file);
         $controller = new $name();
-        /* $controller = "MVC\\src\\Controller\\taskController"; */
         return $controller;
     }
 }

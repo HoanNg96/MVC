@@ -1,9 +1,10 @@
 <?php
+
 class tasksController extends Controller
 {
     function index()
     {
-        require(ROOT . 'Models/Task.php');
+        require(ROOT . 'Models/TaskModel.php');
 
         $tasks = new TaskModel();
 
@@ -14,14 +15,12 @@ class tasksController extends Controller
 
     function create()
     {
-        if (isset($_POST["title"]))
-        {
-            require(ROOT . 'Models/Task.php');
+        if (isset($_POST["title"])) {
+            require(ROOT . 'Models/TaskModel.php');
 
-            $task= new TaskModel();
+            $task = new TaskModel();
 
-            if ($task->create($_POST["title"], $_POST["description"]))
-            {
+            if ($task->create($_POST["title"], $_POST["description"])) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
         }
@@ -31,15 +30,13 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        require(ROOT . 'Models/Task.php');
-        $task= new TaskModel();
+        require(ROOT . 'Models/TaskModel.php');
+        $task = new TaskModel();
 
         $d["task"] = $task->showTask($id);
 
-        if (isset($_POST["title"]))
-        {
-            if ($task->edit($id, $_POST["title"], $_POST["description"]))
-            {
+        if (isset($_POST["title"])) {
+            if ($task->edit($id, $_POST["title"], $_POST["description"])) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
         }
@@ -49,11 +46,10 @@ class tasksController extends Controller
 
     function delete($id)
     {
-        require(ROOT . 'Models/Task.php');
+        require(ROOT . 'Models/TaskModel.php');
 
         $task = new TaskModel();
-        if ($task->delete($id))
-        {
+        if ($task->delete($id)) {
             header("Location: " . WEBROOT . "tasks/index");
         }
     }
