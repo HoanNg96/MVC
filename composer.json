@@ -2,7 +2,11 @@
     "name": "hoan/mvc",
     "autoload": {
         "psr-4": {
-            "MVC\\": "src/"
+            "MVC\\": "src/",
+            "MVC\\Config\\": "src/Config/",
+            "MVC\\Controllers\\": "src/Controllers/",
+            "MVC\\Core\\": "src/Core/",
+            "MVC\\Models\\": "src/Models/"
         }
     },
     "config": {

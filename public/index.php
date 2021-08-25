@@ -13,9 +13,9 @@ define('BASEPATH', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME
 
 require BASEPATH . '/vendor/autoload.php';
 
-use MVC\Dispatcher;
+/* use MVC\Dispatcher;
 use MVC\Request;
-use MVC\Router;
+use MVC\Router; */
 use MVC\Controllers\tasksController;
 
 /* $dispatch = new Dispatcher();
