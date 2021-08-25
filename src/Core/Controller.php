@@ -2,6 +2,8 @@
 
 namespace MVC\Core;
 
+use ReflectionClass;
+
 class Controller
 {
     var $vars = [];
@@ -15,8 +17,9 @@ class Controller
     function render($filename)
     {
         extract($this->vars);
+        $classname = new ReflectionClass($this);
         ob_start();
-        require(ROOT . "Views/" . ucfirst(str_replace('Controller', '', get_class($this))) . '/' . $filename . '.php');
+        require(ROOT . "Views/" . ucfirst(str_replace('Controller', '', $classname->getShortName())) . '/' . $filename . '.php');
         $content_for_layout = ob_get_clean();
 
         if ($this->layout == false) {

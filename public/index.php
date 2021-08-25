@@ -16,10 +16,11 @@ require BASEPATH . '/vendor/autoload.php';
 use MVC\Dispatcher;
 use MVC\Request;
 use MVC\Router;
+use MVC\Controllers\tasksController;
 
-$dispatch = new Dispatcher();
-$dispatch->dispatch();
+/* $dispatch = new Dispatcher();
+$dispatch->dispatch(); */
 
-/* $router = new Router();
-$request = new Request();
-print_r($request); */
+$x = new tasksController();
+$x->render("create");
+
