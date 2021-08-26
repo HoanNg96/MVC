@@ -7,9 +7,9 @@ use MVC\Models\TaskModel;
 
 class tasksController extends Controller
 {
-    function index()
+    /* function index()
     {
-        /* require(ROOT . 'Models/TaskModel.php'); */
+        require(ROOT . 'Models/TaskModel.php');
 
         $tasks = new TaskModel();
 
@@ -21,7 +21,7 @@ class tasksController extends Controller
     function create()
     {
         if (isset($_POST["title"])) {
-            /* require(ROOT . 'Models/TaskModel.php'); */
+            require(ROOT . 'Models/TaskModel.php');
 
             $task = new TaskModel();
 
@@ -35,7 +35,7 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        /* require(ROOT . 'Models/TaskModel.php'); */
+        require(ROOT . 'Models/TaskModel.php');
         $task = new TaskModel();
 
         $d["task"] = $task->showTask($id);
@@ -51,11 +51,11 @@ class tasksController extends Controller
 
     function delete($id)
     {
-        /* require(ROOT . 'Models/TaskModel.php'); */
+        require(ROOT . 'Models/TaskModel.php');
 
         $task = new TaskModel();
         if ($task->delete($id)) {
             header("Location: " . WEBROOT . "tasks/index");
         }
-    }
+    } */
 }

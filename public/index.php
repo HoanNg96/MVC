@@ -1,5 +1,10 @@
 <?php
 
+use MVC\Core\Model;
+use MVC\Core\ResourceModel;
+use MVC\Dispatcher;
+use MVC\Models\TaskModel;
+
 define('WEBROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_NAME"]));
 define('ROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]) . 'src/');
 define('BASEPATH', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]));
@@ -11,16 +16,12 @@ define('BASEPATH', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME
 //require(ROOT . 'dispatcher.php');
 
 
+use MVC\Models\TaskResourceModel;
 require BASEPATH . '/vendor/autoload.php';
-
-/* use MVC\Dispatcher;
-use MVC\Request;
-use MVC\Router; */
-use MVC\Controllers\tasksController;
 
 /* $dispatch = new Dispatcher();
 $dispatch->dispatch(); */
 
-$x = new tasksController();
-$x->render("create");
+/* $x = new TaskResourceModel("5", ["title" => "task 3"]);
+$x->save($x->model); */
 

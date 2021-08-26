@@ -15,13 +15,13 @@ class ResourceModel implements ResourceModelInterface
     function _inni($table, $id, $model)
     {
         $this->table = $table;
-        $this->id - $id;
+        $this->id = $id;
         $this->model = $model;
     }
 
     public function get($id)
     {
-        $sql = "SELECT * FROM $this->table where id = $id";
+        $sql = "SELECT * FROM $this->table where $this->id = $id";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return ($req->fetchObject(get_class($this->model)));
@@ -37,20 +37,22 @@ class ResourceModel implements ResourceModelInterface
 
     public function save($model)
     {
-        $arrayModel = array(
-            "id" => "null",
-            "title" => "This is title",
-            "name" => "This is name"
-        );
+        $arrayModel = $model->getProperties($model);
 
         $id = $arrayModel[$this->id];
 
-        $stringModel = "title = :title, name = :name";
+        $strModel_array = [];
+        foreach (array_keys($arrayModel) as $val) {
+            $strModel_array[$val . " = :" . $val] = "";
+        }
 
-        if ($arrayModel['myId'] == null) {
+        $stringModel = implode(", ", array_keys($strModel_array));
+
+        var_dump($arrayModel);
+        if ($id == null) {
             $sql = "INSERT into $this->table set $stringModel";
         } else {
-            $sql = "UPDATE $this->table SET $stringModel WHERE id = $this->id";
+            $sql = "UPDATE $this->table SET $stringModel WHERE $this->id = $id";
         }
 
         $req = Database::getBdd()->prepare($sql);
@@ -59,7 +61,7 @@ class ResourceModel implements ResourceModelInterface
 
     public function delete($id)
     {
-        $sql = "DELETE * FROM $this->table WHERE id = $id";
+        $sql = "DELETE * FROM $this->table WHERE $this->id = $id";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
     }
