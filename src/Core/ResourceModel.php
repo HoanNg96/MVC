@@ -12,7 +12,7 @@ class ResourceModel implements ResourceModelInterface
     private $id;
     private $model;
 
-    function _inni($table, $id, $model)
+    function _init($table, $id, $model)
     {
         $this->table = $table;
         $this->id = $id;

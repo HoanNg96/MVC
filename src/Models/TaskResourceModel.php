@@ -16,6 +16,6 @@ class TaskResourceModel extends ResourceModel
         {
             $TaskModel_obj->$key = $value;
         }
-        parent::_inni("tasks", "id", $TaskModel_obj);
+        parent::_init("tasks", "id", $TaskModel_obj);
     }
 }
