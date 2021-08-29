@@ -26,7 +26,27 @@ class TaskModel extends Model
         return $array;
     }
 
-    public function set($inputId, array $data = [])
+    public function set($id, $title, $description)
+    {   
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $sql = "SELECT * FROM tasks WHERE id = $this->id";
+        $req = Database::getBdd()->prepare($sql);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        if ($result && (count($result) != 0)) {
+            //update
+            $this->created_at = $result['created_at'];
+            $this->updated_at = date('Y-m-d H:i:s');
+        } else {
+            //create
+            $this->created_at = date('Y-m-d H:i:s');
+            $this->updated_at = date('Y-m-d H:i:s');
+        }
+    }
+    
+    /* public function set($inputId, array $data = [])
     {   
         $this->id = $inputId;
         $sql = "SELECT * FROM tasks WHERE id = $this->id";
@@ -52,7 +72,7 @@ class TaskModel extends Model
             $this->created_at = date('Y-m-d H:i:s');
             $this->updated_at = date('Y-m-d H:i:s');
         }
-    }
+    } */
 
     /* public function create($title, $description)
     {

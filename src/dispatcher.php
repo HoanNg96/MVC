@@ -14,16 +14,17 @@ class Dispatcher
         Router::parse($this->request->url, $this->request);
 
         $controller = $this->loadController();
-
-        call_user_func_array([$controller, $this->request->action], $this->request->params);
+        
+        call_user_func_array([new $controller, $this->request->action], $this->request->params);
     }
 
     public function loadController()
     {
         $name = $this->request->controller . "Controller";
-        $file = ROOT . 'Controllers/' . $name . '.php';
+        /* $file = ROOT . 'Controllers/' . $name . '.php';
         require($file);
-        $controller = new $name();
+        $controller = new $name(); */
+        $controller = "MVC\\Controllers\\$name";
         return $controller;
     }
 }

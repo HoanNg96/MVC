@@ -2,9 +2,10 @@
 
 namespace MVC\Config;
 
+use MVC\Config\DatabaseInterface;
 use PDO;
 
-class Database
+class Database implements DatabaseInterface
 {
     private static $bdd = null;
 

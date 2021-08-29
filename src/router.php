@@ -9,7 +9,7 @@ class Router
         $url = trim($url);
 
         if ($url == "/MVC/") {
-            $request->controller = "tasks";
+            $request->controller = "Tasks";
             $request->action = "index";
             $request->params = [];
         } else {

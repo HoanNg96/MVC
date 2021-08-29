@@ -1,13 +1,13 @@
 <?php
 
-use MVC\Core\Model;
-use MVC\Core\ResourceModel;
-use MVC\Dispatcher;
-use MVC\Models\TaskModel;
-
 define('WEBROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_NAME"]));
+define('URL_WEBROOT', str_replace("public", "" , dirname($_SERVER['SCRIPT_NAME'])) . 'src/');
 define('ROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]) . 'src/');
 define('BASEPATH', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]));
+/* 
+define('RELATIVE_BASEPATH', str_replace("public", "" , dirname($_SERVER['SCRIPT_NAME']))); */
+
+require BASEPATH . '/vendor/autoload.php';
 
 //require(ROOT . 'Config/core.php');
 
@@ -15,13 +15,13 @@ define('BASEPATH', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME
 //require(ROOT . 'request.php');
 //require(ROOT . 'dispatcher.php');
 
+use MVC\Config\Database;
+use MVC\Core\Model;
+use MVC\Core\Controller;
 
-use MVC\Models\TaskResourceModel;
-require BASEPATH . '/vendor/autoload.php';
+use MVC\Router;
+use MVC\Request;
+use MVC\Dispatcher;
 
-/* $dispatch = new Dispatcher();
-$dispatch->dispatch(); */
-
-/* $x = new TaskResourceModel("5", ["title" => "task 3"]);
-$x->save($x->model); */
-
+$dispatch = new Dispatcher();
+$dispatch->dispatch();

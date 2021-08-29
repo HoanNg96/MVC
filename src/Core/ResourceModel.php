@@ -48,7 +48,6 @@ class ResourceModel implements ResourceModelInterface
 
         $stringModel = implode(", ", array_keys($strModel_array));
 
-        var_dump($arrayModel);
         if ($id == null) {
             $sql = "INSERT into $this->table set $stringModel";
         } else {
