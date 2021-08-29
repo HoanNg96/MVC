@@ -21,15 +21,16 @@ class TasksController extends Controller
     function create()
     {
         if (isset($_POST["title"])) {
-
             $id = 0;
             $title = $_POST["title"];
             $description = $_POST["description"];
+            $form = ['title' => $title, 'description' => $description];
+            $this->secure_form($form);
             $taskModel_obj = new TaskModel;
-            $taskModel_obj->set($id, $title, $description);
-            $task = new TaskRepository();
+            $taskModel_obj->set($id, $form['title'], $form['description']);
+            $taskss = new TaskRepository();
 
-            if ($task->add($taskModel_obj)) {
+            if ($taskss->add($taskModel_obj)) {
                 header("Location: " . URL_WEBROOT . "Tasks/index");
             }
         }
@@ -39,12 +40,20 @@ class TasksController extends Controller
 
     function edit($id)
     {
-        $task = new TaskRepository();
+        $tasks = new TaskRepository();
 
-        $d["task"] = $task->showTask($id);
+        $d["tasks"] = $tasks->get($id);
 
         if (isset($_POST["title"])) {
-            if ($task->edit($id, $_POST["title"], $_POST["description"])) {
+            $id = $id;
+            $title = $_POST["title"];
+            $description = $_POST["description"];
+            $form = ['title' => $title, 'description' => $description];
+            $this->secure_form($form);
+            $taskModel_obj = new TaskModel;
+            $taskModel_obj->set($id, $form['title'], $form['description']);
+
+            if ($tasks->add($taskModel_obj)) {
                 header("Location: " . URL_WEBROOT . "Tasks/index");
             }
         }
