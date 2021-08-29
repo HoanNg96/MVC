@@ -42,5 +42,6 @@ class Controller
         foreach ($form as $key => $value) {
             $form[$key] = $this->secure_input($value);
         }
+        return $form;
     }
 }

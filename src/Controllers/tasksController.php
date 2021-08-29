@@ -21,11 +21,13 @@ class TasksController extends Controller
     function create()
     {
         if (isset($_POST["title"])) {
+            //get form data
             $id = 0;
             $title = $_POST["title"];
             $description = $_POST["description"];
             $form = ['title' => $title, 'description' => $description];
-            $this->secure_form($form);
+            //secure form
+            $form = $this->secure_form($form);
             $taskModel_obj = new TaskModel;
             $taskModel_obj->set($id, $form['title'], $form['description']);
             $taskss = new TaskRepository();
@@ -41,15 +43,16 @@ class TasksController extends Controller
     function edit($id)
     {
         $tasks = new TaskRepository();
-
         $d["tasks"] = $tasks->get($id);
 
         if (isset($_POST["title"])) {
+            //get form data
             $id = $id;
             $title = $_POST["title"];
             $description = $_POST["description"];
             $form = ['title' => $title, 'description' => $description];
-            $this->secure_form($form);
+            //secure form
+            $form = $this->secure_form($form);
             $taskModel_obj = new TaskModel;
             $taskModel_obj->set($id, $form['title'], $form['description']);
 

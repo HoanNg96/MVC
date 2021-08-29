@@ -16,6 +16,7 @@ class Database implements DatabaseInterface
     public static function getBdd()
     {
         if (is_null(self::$bdd)) {
+            //database connect config
             self::$bdd = new PDO("mysql:host=localhost;dbname=mvc", 'root', '');
         }
         return self::$bdd;
