@@ -37,7 +37,7 @@ class ResourceModel implements ResourceModelInterface
 
     public function save($model)
     {
-        $arrayModel = $model->getProperties($model);
+        $arrayModel = ($this->model)->getProperties($model);
 
         $id = $arrayModel[$this->id];
 
@@ -60,8 +60,9 @@ class ResourceModel implements ResourceModelInterface
 
     public function delete($id)
     {
-        $sql = "DELETE * FROM $this->table WHERE $this->id = $id";
+        $sql = "DELETE FROM $this->table WHERE $this->id = $id";
         $req = Database::getBdd()->prepare($sql);
-        $req->execute();
+        /* $req->execute(); */
+        return $req->execute();
     }
 }

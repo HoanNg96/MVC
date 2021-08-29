@@ -4,6 +4,7 @@ namespace MVC\Models;
 
 class TaskRepository
 {
+    //$model la 1 object
     public function add($model)
     {
         $object = new TaskResourceModel;
@@ -26,6 +27,6 @@ class TaskRepository
     {
         $object = new TaskResourceModel;
         $object->__construct();
-        return $object->getAll();
+        return $object->getAll($model);
     }
 }
