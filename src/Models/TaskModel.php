@@ -31,16 +31,23 @@ class TaskModel extends Model
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $sql = "SELECT * FROM tasks WHERE id = $this->id";
-        $req = Database::getBdd()->prepare($sql);
-        $req->execute();
-        $result = $req->fetch(PDO::FETCH_ASSOC);
         if ($this->id != 0) {
             //update
+            $sql = "SELECT * FROM tasks WHERE id = $this->id";
+            $req = Database::getBdd()->prepare($sql);
+            $req->execute();
+            $result = $req->fetch(PDO::FETCH_ASSOC);
             $this->created_at = $result['created_at'];
             $this->updated_at = date('Y-m-d H:i:s');
         } else {
             //create
+            $sql = "SELECT * FROM tasks ORDER BY id DESC";
+            $req = Database::getBdd()->prepare($sql);
+            $req->execute();
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+            $sql = "ALTER TABLE tasks AUTO_INCREMENT = " . ($result['id']+1);
+            $req = Database::getBdd()->prepare($sql);
+            $req->execute();
             $this->created_at = date('Y-m-d H:i:s');
             $this->updated_at = date('Y-m-d H:i:s');
         }
