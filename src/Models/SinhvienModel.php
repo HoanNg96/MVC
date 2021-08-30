@@ -48,9 +48,15 @@ class SinhvienModel extends Model
             $req = Database::getBdd()->prepare($sql);
             $req->execute();
             $result = $req->fetch(PDO::FETCH_ASSOC);
-            $sql = "ALTER TABLE sinhvien AUTO_INCREMENT = " . ($result['id']+1);
-            $req = Database::getBdd()->prepare($sql);
-            $req->execute();
+            if ($result) {
+                $sql = "ALTER TABLE sinhvien AUTO_INCREMENT = " . ($result['id']+1);
+                $req = Database::getBdd()->prepare($sql);
+                $req->execute();
+            } else {
+                $sql = "ALTER TABLE sinhvien AUTO_INCREMENT = 1";
+                $req = Database::getBdd()->prepare($sql);
+                $req->execute();
+            }
             $this->created_at = date('Y-m-d H:i:s');
             $this->updated_at = date('Y-m-d H:i:s');
         }
